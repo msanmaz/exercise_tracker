@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1072074815221",
+    "firebase_url": "https://exercisetracker-dab32.firebaseio.com",
+    "project_id": "exercisetracker-dab32",
+    "storage_bucket": "exercisetracker-dab32.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1072074815221:android:a11ea44aa6eb4c4406b7bc",
+        "android_client_info": {
+          "package_name": "com.example.exercise_tracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1072074815221-erjt5qb19o7m3t2pskohfi6cms1c2m04.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-PMrI2edSPEiuqQWzdGy0Ek4aUPWMg2k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1072074815221-erjt5qb19o7m3t2pskohfi6cms1c2m04.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
