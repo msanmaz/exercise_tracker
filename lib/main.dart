@@ -100,6 +100,11 @@ class Dashboard extends StatelessWidget {
                                               ),
                                             ],
                                           ),
+                                          RaisedButton(
+                                            onPressed: () {},
+                                            child: const Text('Submit',
+                                                style: TextStyle(fontSize: 20)),
+                                          )
                                         ],
                                       ))
                                 ],
