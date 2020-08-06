@@ -1,5 +1,5 @@
-import 'package:exercise_tracker/Exercise.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class BasicAppBarSample extends StatelessWidget {
   @override
@@ -25,114 +25,26 @@ class BasicAppBarSample extends StatelessWidget {
           elevation: 50.0,
           brightness: Brightness.dark,
         ),
-        body: Dashboard(),
+        body: Results(),
       ),
     );
   }
 }
 
-var cryptoData = CryptoData.getData;
-
-class Dashboard extends StatelessWidget {
+class Results extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Expanded(
-            child: ListView.builder(
-                itemCount: cryptoData.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                    height: 220,
-                    width: double.maxFinite,
-                    child: Card(
-                      elevation: 5,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border(
-                            top: BorderSide(width: 2.0),
-                          ),
-                          color: Colors.white,
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.all(7),
-                          child: Stack(children: <Widget>[
-                            Align(
-                              alignment: Alignment.centerRight,
-                              child: Stack(
-                                children: <Widget>[
-                                  Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 10, top: 5),
-                                      child: Column(
-                                        children: <Widget>[
-                                          Row(children: <Widget>[
-                                            setAmount(cryptoData[index])
-                                          ]),
-                                          new Row(
-                                            children: <Widget>[
-                                              new Flexible(
-                                                child: new TextField(
-                                                  decoration:
-                                                      const InputDecoration(
-                                                          helperText:
-                                                              "Enter Reps"),
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyText2,
-                                                ),
-                                              ),
-                                              Expanded(
-                                                child: new TextField(
-                                                  decoration:
-                                                      const InputDecoration(
-                                                          helperText:
-                                                              "Enter Sets"),
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyText2,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          RaisedButton(
-                                            onPressed: () {},
-                                            child: const Text('Submit',
-                                                style: TextStyle(fontSize: 20)),
-                                          )
-                                        ],
-                                      ))
-                                ],
-                              ),
-                            )
-                          ]),
-                        ),
-                      ),
-                    ),
-                  );
-                }),
-          ),
-        ],
-      ),
-    ));
-  }
-
-  Widget setAmount(data) {
-    return Align(
-      alignment: Alignment.centerLeft,
-      child: RichText(
-        text: TextSpan(
-          text: '${data['exercise']}',
-          style: TextStyle(
-              fontWeight: FontWeight.bold, color: Colors.green, fontSize: 20),
-        ),
-      ),
-    );
+        body: StreamBuilder(
+            stream: Firestore.instance.collection("exercisupper").snapshots(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) return Text('Loading');
+              return Column(
+                children: <Widget>[
+                  Text(snapshot.data.document[0]['pull-up reps'])
+                ],
+              );
+            }));
   }
 }
 
