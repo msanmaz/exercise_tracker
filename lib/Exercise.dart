@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
 
-class CryptoData {
+class ExcData {
   static final getData = [
     {
-      'exercise': 'pull-ups',
+      'exercise': 'Pull-ups',
       'type': 'upperbody',
       'changeColor': Colors.green,
     },
     {
-      'exercise': 'push-ups',
+      'exercise': 'Push-ups',
       'type': 'upperbody',
       'changeColor': Colors.redAccent,
     },
     {
-      'exercise': 'diamond pull-up',
+      'exercise': 'Diamond pull-up',
       'type': 'upperbody',
       'changeColor': Colors.orange,
     },
     {
-      'exercise': 'incline push-up',
+      'exercise': 'Incline push-up',
       'type': 'upperbody',
     },
     {
-      'exercise': 'decline push-ups',
+      'exercise': 'Decline push-ups',
       'type': 'upperbody',
     }
   ];

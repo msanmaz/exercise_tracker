@@ -1,16 +1,19 @@
+/*
+import 'package:exercise_tracker/providers/exercise_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:exercise_tracker/Exercise.dart';
+import 'package:provider/provider.dart';
 
-var cryptoData = CryptoData.getData;
-
+var cryptoData = ExcData.getData;
+*/
+/*
 class Dashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final exerciseProvider = Provider.of<ExerciseProvider>(context);
     return Scaffold(
         body: Container(
       child: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Expanded(
             child: ListView.builder(
@@ -24,10 +27,7 @@ class Dashboard extends StatelessWidget {
                       elevation: 5,
                       child: Container(
                         decoration: BoxDecoration(
-                          border: Border(
-                            top: BorderSide(width: 2.0),
-                          ),
-                          color: Colors.white,
+                          color: Colors.white60,
                         ),
                         child: Padding(
                           padding: EdgeInsets.all(7),
@@ -55,6 +55,10 @@ class Dashboard extends StatelessWidget {
                                                   style: Theme.of(context)
                                                       .textTheme
                                                       .bodyText2,
+                                                  onChanged: (value) {
+                                                    exerciseProvider
+                                                        .changeSets(value);
+                                                  },
                                                 ),
                                               ),
                                               Expanded(
@@ -66,12 +70,18 @@ class Dashboard extends StatelessWidget {
                                                   style: Theme.of(context)
                                                       .textTheme
                                                       .bodyText2,
+                                                  onChanged: (value) {
+                                                    exerciseProvider
+                                                        .changeReps(value);
+                                                  },
                                                 ),
                                               ),
                                             ],
                                           ),
                                           RaisedButton(
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              exerciseProvider.saveExercise();
+                                            },
                                             child: const Text('Submit',
                                                 style: TextStyle(fontSize: 20)),
                                           )
@@ -99,9 +109,10 @@ class Dashboard extends StatelessWidget {
         text: TextSpan(
           text: '${data['exercise']}',
           style: TextStyle(
-              fontWeight: FontWeight.bold, color: Colors.green, fontSize: 20),
+              fontWeight: FontWeight.bold, color: Colors.black, fontSize: 23),
         ),
       ),
     );
   }
 }
+*/
