@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:exercise_tracker/dashboard.dart';
 
 const iconGym = 'assets/images/exercise.svg';
 
@@ -11,21 +12,6 @@ class Home extends StatelessWidget {
   Widget get topSection => Container(
         height: 100.0,
         color: Colors.yellow[300],
-      );
-
-  Widget get actionToolBar => Container(
-        width: 100.0,
-        color: Colors.red[300],
-        child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: List<Widget>.generate(
-                5,
-                (_) => Container(
-                      width: 60,
-                      height: 80,
-                      color: Colors.blue[300],
-                      margin: EdgeInsets.only(bottom: 20.0, top: 20.0),
-                    ))),
       );
 
   Widget get mainFeed => Expanded(
@@ -49,7 +35,7 @@ class Home extends StatelessWidget {
       child: Row(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.end,
-          children: <Widget>[mainFeed, actionToolBar]));
+          children: <Widget>[mainFeed, ActionToolBar()]));
 
   Widget get bottomSectiom => Container(
         height: 80.0,
