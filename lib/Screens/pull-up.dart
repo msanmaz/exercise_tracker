@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class MainFeed extends StatelessWidget {
+class PullUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Expanded(
         child: Container(
             child: Column(
                 mainAxisSize: MainAxisSize.max,
