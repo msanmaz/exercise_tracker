@@ -1,5 +1,4 @@
-import 'package:exercise_tracker/drawer.dart';
-import 'package:exercise_tracker/home.dart';
+import 'package:exercise_tracker/Screens/pull-up.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -83,7 +82,7 @@ class _MyHomieState extends State<MyHomie> {
                 Padding(
                   padding: EdgeInsets.only(top: 45.0),
                   child: Container(
-                    height: MediaQuery.of(context).size.height - 300.0,
+                    height: MediaQuery.of(context).size.height - 320.0,
                     child: ListView(
                       children: [
                         _buildExercise(
@@ -144,7 +143,14 @@ class _MyHomieState extends State<MyHomie> {
     return Padding(
         padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
         child: InkWell(
-          onTap: () {},
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => PullUp(
+                      heroTag: imgPath,
+                      exerciseType: exerciseName,
+                      reps: sets,
+                    )));
+          },
           child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -187,19 +193,6 @@ class _MyHomieState extends State<MyHomie> {
                     onPressed: () {})
               ]),
         ));
-  }
-}
-
-//sidebar
-class MySideBar extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Work Bitch'),
-      ),
-      drawer: CollapsingNavigationDrawer(),
-    );
   }
 }
 
