@@ -1,6 +1,5 @@
 import 'package:exercise_tracker/Screens/pull-up.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class BasicAppBarSample extends StatelessWidget {
   @override
@@ -86,13 +85,13 @@ class _MyHomieState extends State<MyHomie> {
                     child: ListView(
                       children: [
                         _buildExercise(
-                            'assets/images/exercise.png', 'Push-Up', '90'),
+                            'assets/images/workout.png', 'Push-Up', 'Everyday'),
+                        _buildExercise('assets/images/exercise1.png', 'Pull-Up',
+                            'Everyday'),
                         _buildExercise(
-                            'assets/images/exercise1.png', 'Pull-Up', '90'),
-                        _buildExercise(
-                            'assets/images/sport.png', 'Chin-Up', '50'),
-                        _buildExercise(
-                            'assets/images/workout.png', 'Sit-Up', '30')
+                            'assets/images/sport.png', 'Chin-Up', 'Everyday'),
+                        _buildExercise('assets/images/exercise.png', 'Sit-Up',
+                            'Twice a week')
                       ],
                     ),
                   ),

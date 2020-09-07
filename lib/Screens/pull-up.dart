@@ -13,6 +13,8 @@ class PullUp extends StatefulWidget {
 
 class _PullUpState extends State<PullUp> {
   var selectedCard = 'WEIGHT';
+  int _counter = 0;
+  int _repcounter = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +89,7 @@ class _PullUpState extends State<PullUp> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Text(widget.exerciseType,
+                        Text('Todays Set',
                             style: TextStyle(
                                 fontFamily: 'Montserrat',
                                 fontSize: 20.0,
@@ -103,7 +105,11 @@ class _PullUpState extends State<PullUp> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
                               InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  setState(() {
+                                    _counter--;
+                                  });
+                                },
                                 child: Container(
                                   height: 25.0,
                                   width: 25.0,
@@ -119,13 +125,88 @@ class _PullUpState extends State<PullUp> {
                                   ),
                                 ),
                               ),
-                              Text('2',
+                              Text('$_counter',
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontFamily: 'Montserrat',
                                       fontSize: 15.0)),
                               InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  setState(() {
+                                    _counter++;
+                                  });
+                                },
+                                child: Container(
+                                  height: 25.0,
+                                  width: 25.0,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(7.0),
+                                      color: Colors.white),
+                                  child: Center(
+                                    child: Icon(
+                                      Icons.add,
+                                      color: Color(0xFF7A9BEE),
+                                      size: 20.0,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 20.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text('TodaysRep',
+                            style: TextStyle(
+                                fontFamily: 'Montserrat',
+                                fontSize: 20.0,
+                                color: Colors.grey)),
+                        Container(height: 25.0, color: Colors.grey, width: 1.0),
+                        Container(
+                          width: 125.0,
+                          height: 40.0,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(17.0),
+                              color: Color(0xFF7A9BEE)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    _repcounter--;
+                                  });
+                                },
+                                child: Container(
+                                  height: 25.0,
+                                  width: 25.0,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(7.0),
+                                      color: Color(0xFF7A9BEE)),
+                                  child: Center(
+                                    child: Icon(
+                                      Icons.remove,
+                                      color: Colors.white,
+                                      size: 20.0,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Text('$_repcounter',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Montserrat',
+                                      fontSize: 15.0)),
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    _repcounter++;
+                                  });
+                                },
                                 child: Container(
                                   height: 25.0,
                                   width: 25.0,
@@ -152,28 +233,32 @@ class _PullUpState extends State<PullUp> {
                         child: ListView(
                           scrollDirection: Axis.horizontal,
                           children: <Widget>[
-                            _buildInfoCard('Sets', '10', TextField()),
+                            _buildInfoCard(
+                                'Sets', 'Goal', '$_counter', TextField()),
                             SizedBox(width: 10.0),
-                            _buildInfoCard('Reps', '15', TextField()),
+                            _buildInfoCard(
+                                'Reps', 'Goal', '$_repcounter', TextField()),
                             SizedBox(width: 10.0),
-                            _buildInfoCard('InputField', 'B6', TextField()),
-                            SizedBox(width: 10.0),
-                            _buildInfoCard('InputField', 'B5', TextField())
                           ],
                         )),
                     SizedBox(height: 20.0),
                     Padding(
                       padding: EdgeInsets.only(bottom: 5.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(20.0),
-                                topRight: Radius.circular(20.0),
-                                bottomLeft: Radius.circular(25.0),
-                                bottomRight: Radius.circular(25.0)),
-                            color: Colors.black),
-                        height: 50.0,
-                        child: Center(child: Text('Submit')),
+                      child: GestureDetector(
+                        onTap: () {
+                          print('container pressed');
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(20.0),
+                                  topRight: Radius.circular(20.0),
+                                  bottomLeft: Radius.circular(25.0),
+                                  bottomRight: Radius.circular(25.0)),
+                              color: Color(0xFF7A9BEE)),
+                          height: 50.0,
+                          child: Center(child: Text('Submit')),
+                        ),
                       ),
                     ),
                   ],
@@ -182,7 +267,8 @@ class _PullUpState extends State<PullUp> {
         ]));
   }
 
-  Widget _buildInfoCard(String cardTitle, String unit, TextField text) {
+  Widget _buildInfoCard(
+      String cardTitle, String sets, String rep, TextField text) {
     return InkWell(
         onTap: () {
           selectCard(cardTitle);
@@ -223,7 +309,7 @@ class _PullUpState extends State<PullUp> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(unit,
+                        Text(sets,
                             style: TextStyle(
                                 fontFamily: 'Montserrat',
                                 fontSize: 14.0,
@@ -231,14 +317,21 @@ class _PullUpState extends State<PullUp> {
                                     ? Colors.white
                                     : Colors.black,
                                 fontWeight: FontWeight.bold)),
-                        Text(unit,
+                        Text(rep,
                             style: TextStyle(
                               fontFamily: 'Montserrat',
                               fontSize: 12.0,
                               color: cardTitle == selectedCard
                                   ? Colors.white
                                   : Colors.black,
-                            ))
+                            )),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(0, 0, 10.0, 0),
+                          child: new TextField(
+                            decoration:
+                                const InputDecoration(helperText: 'Enter'),
+                          ),
+                        )
                       ],
                     ),
                   )
